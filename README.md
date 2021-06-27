@@ -30,3 +30,14 @@
 
 `docker volume prune`
 > Remove unused volumes
+
+## Docker Compose Commands
+
+`docker-compose up -d`
+> Run docker images defined into the compose file
+
+`docker-compose up -d --build`
+> Run docker images defined into the compose file, forcing new build
+
+`docker-compose down -v`
+> Remove running docker images and its volumes
