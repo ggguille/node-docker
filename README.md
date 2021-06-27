@@ -10,8 +10,8 @@
 `docker image ls`
 > Show created images
 
-`docker run -v $(pwd):/app:ro -p 3000:3000 -d --name node-app node-app-image`
-> Run image with sync code (read only), specifying the port, freeing the terminal with a name
+`docker run -v $(pwd):/app:ro --env PORT=4000 -p 3000:4000 -d --name node-app node-app-image`
+> Run image with sync code (read only), specifying the port (env var), freeing the terminal with a name
 
 `docker ps`
 > Show images running
