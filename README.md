@@ -41,3 +41,6 @@
 
 `docker-compose down -v`
 > Remove running docker images and its volumes
+
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build`
+> Pass configuration when running
