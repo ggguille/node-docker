@@ -10,8 +10,8 @@
 `docker image ls`
 > Show created images
 
-`docker run -v $(pwd):/app:ro --env PORT=4000 -p 3000:4000 -d --name node-app node-app-image`
-> Run image with sync code (read only), specifying the port (env var), freeing the terminal with a name
+`docker run -v $(pwd):/app:ro --env-file ./.env -p 3000:4000 -d --name node-app node-app-image`
+> Run image with sync code (read only), env variable (from file), specifying the port, freeing the terminal with a name
 
 `docker ps`
 > Show images running
@@ -19,5 +19,14 @@
 `docker rm node-app -f`
 > Force remove docker image running
 
+`docker rm node-app -fv`
+> Force remove docker image running and its volumes
+
 `docker exec -it node-app bash`
 > Enter into docker image terminal
+
+`docker volume ls`
+> Show volumes
+
+`docker volume prune`
+> Remove unused volumes
