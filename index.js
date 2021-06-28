@@ -10,14 +10,20 @@ const {
 
 const mongoUrl = `mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOST}:${MONGO_PORT}?authSource=admin`
 
-mongoose
-    .connect(mongoUrl, { 
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false
-    })
-    .then(() => console.log('successfully connected to DB'))
-    .catch((e) => console.log(e))
+const connectDbWithRetry = () => {
+    mongoose
+        .connect(mongoUrl, { 
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false
+        })
+        .then(() => console.log('successfully connected to DB'))
+        .catch((e) => {
+            console.log(e)
+            setTimeout(connectDbWithRetry, 5000)
+        })
+}
+connectDbWithRetry()
 
 const app = express();
 
