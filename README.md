@@ -31,6 +31,18 @@
 `docker volume prune`
 > Remove unused volumes
 
+`docker inspect node-docker_mongo_1`
+> Show container information
+
+`docker logs node-docker_mongo_1`
+> Show container logs
+
+`docker network ls`
+> Show networks
+
+`docker network inspect node-docker_default`
+> Show network information
+
 ## Docker Compose Commands
 
 `docker-compose up -d`
