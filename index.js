@@ -1,7 +1,8 @@
 const express = require("express")
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 const redis = require('redis')
 const session = require('express-session')
+const cors = require("cors")
 
 let RedisStore = require('connect-redis')(session)
 
@@ -43,9 +44,8 @@ const connectDbWithRetry = () => {
 connectDbWithRetry()
 
 const app = express();
-
 app.enable("trust proxy")
-
+app.use(cors({}))
 app.use(
     session({
         store: new RedisStore({ client: redisClient }),
@@ -60,7 +60,6 @@ app.use(
     })
 )
 app.use(express.json())
-
 app.use("/api/v1/status", statusRouter)
 app.use("/api/v1/posts", postRouter)
 app.use("/api/v1/users", userRouter)
