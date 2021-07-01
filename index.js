@@ -23,6 +23,7 @@ let redisClient = redis.createClient({
 
 const postRouter = require("./routes/postRoutes")
 const userRouter = require("./routes/userRoutes")
+const statusRouter = require("./routes/statusRoutes")
 
 const mongoUrl = `mongodb://${MONGO_USER}:${MONGO_PWD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`
 
@@ -43,6 +44,8 @@ connectDbWithRetry()
 
 const app = express();
 
+app.enable("trust proxy")
+
 app.use(
     session({
         store: new RedisStore({ client: redisClient }),
@@ -56,12 +59,9 @@ app.use(
         }
     })
 )
+app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.send('<h2>Hi There!!</h2>')
-})
-
-app.use("/api/v1/", express.json())
+app.use("/api/v1/status", statusRouter)
 app.use("/api/v1/posts", postRouter)
 app.use("/api/v1/users", userRouter)
 

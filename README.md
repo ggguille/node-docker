@@ -34,8 +34,8 @@
 `docker inspect node-docker_mongo_1`
 > Show container information
 
-`docker logs node-docker_mongo_1`
-> Show container logs
+`docker logs node-docker_mongo_1 -f`
+> Show container logs, keep showing
 
 `docker network ls`
 > Show networks
@@ -56,3 +56,6 @@
 
 `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build -V`
 > Pass configuration when running and renew annonimous volumes
+
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --scale node-app=2`
+> Pass configuration when running and define container scale
