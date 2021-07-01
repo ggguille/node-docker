@@ -13,4 +13,5 @@ services:
             - MONGO_DB=myapp
             - MONGO_USER=admin
             - MONGO_PWD=password
+            - SESSION_SECRET=secret
         command: npm run dev
