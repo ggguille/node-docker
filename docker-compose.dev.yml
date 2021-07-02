@@ -20,3 +20,8 @@ services:
             - MONGO_PWD=password
             - SESSION_SECRET=secret
         command: npm run dev
+
+    mongo:
+        environment: 
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=password
