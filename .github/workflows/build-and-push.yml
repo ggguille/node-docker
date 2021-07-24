@@ -34,8 +34,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/node-docker-tutorial:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/node-docker-tutorial:1.0.0
-            gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:latest
-            gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:1.0.0
+            eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:latest
+            eu.gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:1.0.0
           
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
