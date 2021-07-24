@@ -19,14 +19,3 @@ jobs:
       id: generate_access_token
       run: |
         echo "::set-output name=token::$(gcloud auth print-access-token)"
-
-    - name: Build and push
-      id: docker_build
-      uses: docker/build-push-action@v2
-      with:
-        build-args: |
-          NODE=production
-        registry: gcr.io
-        repository: ${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:latest
-        username: oauth2accesstoken
-        password: ${{ steps.generate_access_token.outputs.token }}
