@@ -1,4 +1,4 @@
-name: Build & Push
+name: GCloud Setup
 on: [push]
 jobs:
   setup:
@@ -14,3 +14,11 @@ jobs:
 
     - name: Use gcloud CLI
       run: gcloud info
+
+    - name: Generate Access Token
+        id: generate_access_token
+        run: |
+          echo "::set-output name=token::$(gcloud auth print-access-token)"
+
+    - name: Image digest
+        run: echo ${{ steps.generate_access_token.outputs.token }}
