@@ -5,6 +5,8 @@ jobs:
     name: Setup Google Cloud
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@master
       with:
@@ -12,10 +14,11 @@ jobs:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         export_default_credentials: true
 
-    - name: Use gcloud CLI
-      run: gcloud info
+  - name: Configure docker for GCP
+    run: gcloud auth configure-docker
 
-    - name: Generate Access Token
-      id: generate_access_token
-      run: |
-        echo "::set-output name=token::$(gcloud auth print-access-token)"
+  - name: Build docker image
+    run:  docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutoria:latest . 
+
+  - name: Push to Google Container Registry
+    run:  docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutoria:latest
