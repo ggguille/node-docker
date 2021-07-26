@@ -14,11 +14,11 @@ jobs:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
         export_default_credentials: true
 
-  - name: Configure docker for GCP
-    run: gcloud auth configure-docker
+    - name: Configure docker for GCP
+      run: gcloud auth configure-docker
 
-  - name: Build docker image
-    run:  docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutoria:latest . 
+    - name: Build docker image
+      run:  docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutoria:latest . 
 
-  - name: Push to Google Container Registry
-    run:  docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutoria:latest
+    - name: Push to Google Container Registry
+      run:  docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutoria:latest
