@@ -30,6 +30,7 @@ jobs:
         service: node-docker-tutorial
         image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:latest
         credentials: ${{ secrets.GCP_SA_KEY }}
+        env_vars: PORT=3000
 
     - name: Use Output
       run: curl "${{ steps.deploy.outputs.url }}"
