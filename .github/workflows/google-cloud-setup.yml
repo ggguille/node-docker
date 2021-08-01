@@ -18,7 +18,7 @@ jobs:
       run: gcloud auth configure-docker
 
     - name: Build docker image
-      run:  docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutoria:latest . 
+      run:  docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:latest . 
 
     - name: Push to Google Container Registry
-      run:  docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutoria:latest
+      run:  docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:latest
