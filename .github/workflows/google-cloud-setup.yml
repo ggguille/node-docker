@@ -22,3 +22,14 @@ jobs:
 
     - name: Push to Google Container Registry
       run:  docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:latest
+
+    - name: Deploy to Cloud Run
+      id: deploy
+      uses: google-github-actions/deploy-cloudrun@main
+      with:
+        service: node-docker-tutorial
+        image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/node-docker-tutorial:latest
+        credentials: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Use Output
+      run: curl "${{ steps.deploy.outputs.url }}"
